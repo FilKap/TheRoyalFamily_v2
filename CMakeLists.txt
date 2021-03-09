@@ -1,7 +1,7 @@
 cmake_minimum_required( VERSION 3.6.2 )
 
 # For a new project it is sufficient to change only its name in the following line
-set( PROJECT_NAME EmptyProject )
+set( PROJECT_NAME TheRoyalFamily_v2 )
 
 project( ${PROJECT_NAME} )
 
