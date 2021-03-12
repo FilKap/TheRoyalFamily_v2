@@ -12,30 +12,31 @@ namespace TheRoyalFamily_v2
 
 class TBoard
 {
-
+// Fields
 private:
 
-	TPiece::Color turn{ TPiece::white };
+	EColor fTurn{ white };
 	std::vector<std::shared_ptr<TPiece>> fPieces;
 
 
 // Private members	
 private:
 
-	void InitPieces(void);
+	void CreatePieces(void);
 
 
 // Private constructor
 private:
 
-	TBoard() { InitPieces(); }
+	TBoard() { CreatePieces(); }
 	
 
-
+// Getters & setters
 public:
 
 	static TBoard& GetBoard(void);
-
+	auto& GetPieces(void) const { return fPieces; }
+	auto GetTurn(void) const   { return fTurn; }
 
 // Interface
 public:

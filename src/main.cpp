@@ -7,9 +7,9 @@ using namespace TheRoyalFamily_v2;
 
 int main()
 {
-	auto board = TBoard::GetBoard();
+	//auto board = StartGame();
 	
-	board.Print();
+	//board.Print();
 	
 
 

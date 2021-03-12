@@ -1,5 +1,6 @@
 #include "Board.h"
 #include "Utility.h"
+#include "WinUtility.h"
 
 using std::make_shared;
 
@@ -18,13 +19,15 @@ TBoard& TBoard::GetBoard()
 void TBoard::Print()
 {
 	PrintEmpty();
+	PrintPieces();
+	SetCursorPos(0, 10);
 }
 
 
-void TBoard::InitPieces()
+void TBoard::CreatePieces()
 {
-	fPieces.push_back(make_shared<TPawn>('A', 7, TPiece::black));
-	fPieces.push_back(make_shared<TPawn>('A', 2, TPiece::white));
+	fPieces.push_back(make_shared<TPawn>('A', 7, black));
+	fPieces.push_back(make_shared<TPawn>('A', 2, white));
 }
 
 

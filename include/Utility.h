@@ -1,9 +1,9 @@
 #pragma once
 
-#include "Piece.h"
-
 namespace TheRoyalFamily_v2
 {
+	enum EColor {white, black};
 	void PrintEmpty(void);
-	std::ostream& operator<< (std::ostream& o, const TPiece& p);
+	void PrintPieces(void);
+	//TBoard StartGame(void);
 }

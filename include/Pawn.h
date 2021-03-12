@@ -12,7 +12,7 @@ class TPawn :
 
 public:
 	
-	TPawn(char file, int rank, TPiece::Color color, char code = 'p') : TPiece(file, rank, color, code) {}
+	TPawn(char file, int rank, EColor color, char code = 'p') : TPiece(file, rank, color, code) {}
 	~TPawn() = default;
 
 public:
