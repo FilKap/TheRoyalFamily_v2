@@ -1,16 +1,16 @@
 #pragma once
 
+#include "Pawn.h"
+
 #include <vector>
 #include <memory>
-
-#include "Pawn.h"
-#include "Piece.h"
 
 
 namespace TheRoyalFamily_v2
 {
+	
 
-class TBoard
+class Board
 {
 // Fields
 private:
@@ -22,19 +22,19 @@ private:
 // Private members	
 private:
 
-	void CreatePieces(void);
+	
 
 
 // Private constructor
 private:
 
-	TBoard() { CreatePieces(); }
+	Board() { }
 	
 
 // Getters & setters
 public:
 
-	static TBoard& GetBoard(void);
+	static Board& GetBoard(void);
 	auto& GetPieces(void) const { return fPieces; }
 	auto GetTurn(void) const   { return fTurn; }
 
@@ -42,6 +42,7 @@ public:
 public:
 
 	void Print(void);
+	void CreateNewGamePieces(void);
 
 };
 

@@ -1,15 +1,22 @@
-#include <iostream>
-
-#include "Board.h"
 #include "Utility.h"
 
 using namespace TheRoyalFamily_v2;
 
+auto board = Board::GetBoard();
+
+
 int main()
 {
-	//auto board = StartGame();
+	ProgramConfig();
+	NewGame();
+
+	board.Print();
 	
-	//board.Print();
+	while (1)
+	{
+		
+	}
+	
 	
 
 

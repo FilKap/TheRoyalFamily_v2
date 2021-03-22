@@ -1,16 +1,16 @@
 #include "Utility.h"
-#include "WinUtility.h"
-#include "Board.h"
 
 #include <array>
 #include <cassert>
 
-using std::array, std::ostream, std::cout, std::endl, std::copy;
+using std::array, std::ostream, std::cout, std::endl, std::copy, std::cin;
+
+extern TheRoyalFamily_v2::Board board;
+
 
 
 namespace TheRoyalFamily_v2
 {
-	
 
 void PrintEmpty()
 {
@@ -31,16 +31,15 @@ std::ostream& operator<< (std::ostream& o, const TPiece& p)
 	auto [file, rank] = p.fPos;
 	SetCursorPos( ((file - 'A' + 1) * 2), 8 - rank );
 	SetTextColor(p.fColor);
-	cout << p.fCode;
+	cout << p.fCode << endl;
 	return o;
 }
 
 
 void PrintPieces()
 {
-	auto board = TBoard::GetBoard();
 	auto pieces = board.GetPieces();
-	
+
 	for (const auto& piece : pieces)
 	{
 		assert(piece.get() != nullptr);
@@ -50,11 +49,17 @@ void PrintPieces()
 }
 
 
-//TBoard& StartGame()
-//{
-//	SetBackground();
-//	return TBoard::GetBoard();
-//}
+void ProgramConfig()
+{	
+	SetBackground();
+}
+
+
+void NewGame()
+{
+	board.CreateNewGamePieces();
+}
+
 
 
 }

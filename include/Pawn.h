@@ -6,14 +6,14 @@ namespace TheRoyalFamily_v2
 {
 
 
-class TPawn :
+class Pawn :
 	public TPiece
 {
 
 public:
 	
-	TPawn(char file, int rank, EColor color, char code = 'p') : TPiece(file, rank, color, code) {}
-	~TPawn() = default;
+	Pawn(char file, int rank, EColor color, char code = 'p') : TPiece(file, rank, color, code) {}
+	~Pawn() = default;
 
 public:
 
@@ -25,7 +25,7 @@ public:
 
 
 
-inline bool TPawn::Move(PiecePos& curr_pos, PiecePos& target_pos)
+inline bool Pawn::Move(PiecePos& curr_pos, PiecePos& target_pos)
 {
 	return true;
 }

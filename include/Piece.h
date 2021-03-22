@@ -1,13 +1,13 @@
 #pragma once
 
-#include "Utility.h"
-
 #include <tuple>
 #include <iostream>
+
 
 namespace TheRoyalFamily_v2
 {
 
+enum EColor { white, black };
 
 class TPiece
 {

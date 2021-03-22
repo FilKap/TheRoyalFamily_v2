@@ -1,9 +1,13 @@
 #pragma once
 
+#include "Board.h"
+#include "WinUtility.h"
+
+
 namespace TheRoyalFamily_v2
 {
-	enum EColor {white, black};
 	void PrintEmpty(void);
 	void PrintPieces(void);
-	//TBoard StartGame(void);
+	void ProgramConfig(void);
+	void NewGame(void);
 }
