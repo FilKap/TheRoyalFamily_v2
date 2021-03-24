@@ -17,7 +17,7 @@ public:
 
 public:
 
-	bool Move(PiecePos& curr_pos, PiecePos& target_pos);
+	bool Move(PiecePos& cur_pos, PiecePos& tar_pos);
 
 };
 

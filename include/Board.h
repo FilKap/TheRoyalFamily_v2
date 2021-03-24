@@ -36,13 +36,15 @@ public:
 
 	static Board& GetBoard(void);
 	auto& GetPieces(void) const { return fPieces; }
-	auto GetTurn(void) const   { return fTurn; }
+	auto  GetTurn(void) const   { return fTurn; }
 
 // Interface
 public:
 
 	void Print(void);
 	void CreateNewGamePieces(void);
+	bool TryMove(const TPiece::PiecePos& cur_pos, const TPiece::PiecePos& tar_pos);
+	void ToggleTurn(void);
 
 };
 

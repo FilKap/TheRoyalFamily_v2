@@ -10,12 +10,12 @@ int main()
 	ProgramConfig();
 	NewGame();
 
-	board.Print();
-	
-	while (1)
+	bool game_process{ };
+
+	do
 	{
-		
-	}
+		game_process = GameProcess();
+	} while (game_process);
 	
 	
 

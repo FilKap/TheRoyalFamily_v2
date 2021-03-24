@@ -10,4 +10,6 @@ namespace TheRoyalFamily_v2
 	void PrintPieces(void);
 	void ProgramConfig(void);
 	void NewGame(void);
+	bool GameProcess(void);
+	void CmdClear(void);
 }
