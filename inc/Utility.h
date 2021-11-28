@@ -1,15 +1,21 @@
 #pragma once
 
 #include "Board.h"
-#include "WinUtility.h"
 
 
 namespace TheRoyalFamily_v2
 {
-	void PrintEmpty(void);
-	void PrintPieces(void);
-	void ProgramConfig(void);
-	void NewGame(void);
-	bool GameProcess(void);
-	void CmdClear(void);
+
+void PrintEmpty(void);
+void PrintPieces(void);
+void ConsoleInit(void);
+void NewGame(void);
+bool GameProcess(void);
+void CmdClear(void);
+
+// OS utility
+void SetCursorPosition(int x, int y);
+void SetBackground(void);
+void SetTextColor(EColor color);
+
 }

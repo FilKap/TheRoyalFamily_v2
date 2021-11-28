@@ -2,15 +2,17 @@
 
 #include <tuple>
 #include <iostream>
+#include <memory>
 
 
 namespace TheRoyalFamily_v2
 {
 
+
 enum EColor { white, black };
 
-class TPiece
-{
+
+class TPiece {
 
 public:
 
@@ -18,18 +20,31 @@ public:
 
 private:
 
-	const EColor	fColor;
-	PiecePos		fPos; 
-	const char		fCode{};
+	EColor	        fColor;
+	PiecePos		fPos;
+	char		    fCode;
 
 public:
 
-	TPiece(char file, int rank, EColor color, char code) : fPos{ std::make_tuple(file, rank) }, fColor{ color }, fCode{ code } {}
+	// Copy asigment constructor
+	TPiece(char file, int rank, EColor color, char code) :
+		fPos{ std::make_tuple(file, rank) },
+		fColor{ color },
+		fCode{ code }
+	{ }
+
+	// Copy constructor
+	TPiece(const TPiece& piece) = default;
+
+	// Copy constructor operator 
+	TPiece& operator= (const TPiece& piece) = default;
+
+	// Destructor
 	virtual ~TPiece() = default;
 
 public:
 
-	virtual bool Move( PiecePos& curr_pos, PiecePos& target_pos ) = 0;
+	virtual bool Move(PiecePos& curr_pos, PiecePos& target_pos) = 0;
 
 	friend std::ostream& operator<< (std::ostream& o, const TPiece& p);
 };

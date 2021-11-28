@@ -8,10 +8,10 @@
 
 namespace TheRoyalFamily_v2
 {
-	
 
-class Board
-{
+class Board {
+
+
 // Fields
 private:
 
@@ -22,21 +22,19 @@ private:
 // Private members	
 private:
 
-	
-
 
 // Private constructor
 private:
 
-	Board() { }
-	
+	Board() {}
+
 
 // Getters & setters
 public:
 
 	static Board& GetBoard(void);
 	auto& GetPieces(void) const { return fPieces; }
-	auto  GetTurn(void) const   { return fTurn; }
+	auto  GetTurn(void) const { return fTurn; }
 
 
 // Interface
