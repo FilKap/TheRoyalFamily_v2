@@ -38,6 +38,7 @@ public:
 	auto& GetPieces(void) const { return fPieces; }
 	auto  GetTurn(void) const   { return fTurn; }
 
+
 // Interface
 public:
 

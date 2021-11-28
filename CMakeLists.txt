@@ -27,11 +27,11 @@ endif()
 
 
 # Inform CMake where the header files are
-include_directories( include )
+include_directories( inc )
 
 
 # Automatically add all *.cpp and *.h files to the project
-file ( GLOB SOURCES "./src/*.cpp" "./include/*.h" )
+file ( GLOB SOURCES "./src/*.cpp" "./inc/*.h" )
 add_executable( ${PROJECT_NAME} ${SOURCES} )
 
 
