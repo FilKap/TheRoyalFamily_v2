@@ -14,16 +14,22 @@ enum EColor { white, black };
 
 class TPiece {
 
+
+// Helper
 public:
 
 	using PiecePos = std::tuple<char, int>;
 
+
+// Fields
 private:
 
 	EColor	        fColor;
 	PiecePos		fPos;
 	char		    fCode;
 
+
+// Special functions
 public:
 
 	// Copy asigment constructor
@@ -42,14 +48,22 @@ public:
 	// Destructor
 	virtual ~TPiece() = default;
 
+
+// Getters & Setters
 public:
 
-	virtual bool Move(PiecePos& curr_pos, PiecePos& target_pos) = 0;
+	virtual EColor getColor(void) const { return fColor; }
+	virtual PiecePos getPos(void) const { return fPos; }
+	virtual void setPos(const TPiece::PiecePos& tar_pos) { fPos = tar_pos; }
+
+
+// Interface
+public:
+
+	virtual bool canMove(const PiecePos& tar_pos) = 0;
 
 	friend std::ostream& operator<< (std::ostream& o, const TPiece& p);
 };
-
-
 
 
 }

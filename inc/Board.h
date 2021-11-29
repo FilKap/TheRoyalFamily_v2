@@ -6,8 +6,11 @@
 #include <memory>
 
 
+
 namespace TheRoyalFamily_v2
 {
+
+
 
 class Board {
 
@@ -22,28 +25,31 @@ private:
 // Private members	
 private:
 
+	bool isSameOnSquare(const TPiece::PiecePos& tar_pos) const;
+	void tryCapture(const TPiece::PiecePos& tar_pos);
 
-// Private constructor
+
+// Special functions
 private:
 
-	Board() {}
+	Board() {}							/*Private constructor*/
 
 
 // Getters & setters
 public:
 
-	static Board& GetBoard(void);
-	auto& GetPieces(void) const { return fPieces; }
-	auto  GetTurn(void) const { return fTurn; }
+	static Board& getBoard(void);
+	auto& getPieces(void) const { return fPieces; }
+	auto  getTurn(void) const { return fTurn; }
 
 
 // Interface
 public:
 
-	void Print(void);
-	void CreateNewGamePieces(void);
-	bool TryMove(const TPiece::PiecePos& cur_pos, const TPiece::PiecePos& tar_pos);
-	void ToggleTurn(void);
+	void print(void);
+	void createNewGamePieces(void);
+	bool tryMove(const TPiece::PiecePos& cur_pos, const TPiece::PiecePos& tar_pos);
+	void toggleTurn(void);
 
 };
 

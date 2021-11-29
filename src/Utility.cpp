@@ -13,12 +13,12 @@ extern TheRoyalFamily_v2::Board board;
 namespace TheRoyalFamily_v2
 {
 
-void PrintEmpty() {
+void printEmpty() {
 	const array<int, 8> kNumbers{ 8, 7, 6, 5, 4, 3, 2, 1 };
 	const array<char, 8> kLetters{ 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H' };
 
-	SetCursorPosition(0, 0);
-	SetTextColor(black);
+	setCursorPos(0, 0);
+	setTextColor(black);
 
 	copy(kNumbers.begin(), kNumbers.end(), std::ostream_iterator<int>(cout, " _ _ _ _ _ _ _ _\n"));
 	cout << "  ";
@@ -28,15 +28,15 @@ void PrintEmpty() {
 
 std::ostream& operator<< (std::ostream& o, const TPiece& p) {
 	auto [file, rank] = p.fPos;
-	SetCursorPosition(((file - 'A' + 1) * 2), 8 - rank);
-	SetTextColor(p.fColor);
+	setCursorPos(((file - 'A' + 1) * 2), 8 - rank);
+	setTextColor(p.fColor);
 	cout << p.fCode << endl;
 	return o;
 }
 
 
-void PrintPieces() {
-	auto& pieces = board.GetPieces();
+void printPieces() {
+	auto& pieces = board.getPieces();
 
 	for (const auto& piece : pieces) {
 		assert(piece.get() != nullptr);
@@ -45,49 +45,49 @@ void PrintPieces() {
 }
 
 
-void ConsoleInit() {
-	SetBackground();
+void consoleInit() {
+	setBackground();
 }
 
 
-void NewGame() {
-	board.CreateNewGamePieces();
+void newGame() {
+	board.createNewGamePieces();
 }
 
 
-bool GameProcess() {
-	EColor turn = board.GetTurn();
+bool gameProcess() {
 	string sCur_pos, sTar_pos;
 	TPiece::PiecePos cur_pos, tar_pos;
 
 	while (1)
 	{
 		// Preparing console
-		board.Print();
-		CmdClear();
-		SetTextColor(turn);
+		EColor turn = board.getTurn();
+		board.print();
+		cmdClear();
+		setTextColor(turn);
 
 		// Entering needed data to move piece
 		cout << ">> ";
 		cin >> sCur_pos;
-		SetCursorPosition(7, 10);
+		setCursorPos(7, 10);
 		cout << "-> ";
 		cin >> sTar_pos;
 
 		// Data conversion
 		cur_pos = std::make_tuple(sCur_pos[0], sCur_pos[1] - '0');
-		tar_pos = std::make_tuple(sTar_pos[0], sCur_pos[1] - '0');
+		tar_pos = std::make_tuple(sTar_pos[0], sTar_pos[1] - '0');
 
 		// Try move
-		if (board.TryMove(cur_pos, tar_pos))
-			board.ToggleTurn();
+		if (board.tryMove(cur_pos, tar_pos)) 
+			board.toggleTurn();
 	}
 
 	return true;
 }
 
 
-void CmdClear() {
+void cmdClear() {
 	for (auto i = 0; i < 10; i++)
 	{
 		for (auto i = 0; i < 40; i++)
@@ -95,7 +95,26 @@ void CmdClear() {
 
 		cout << endl;
 	}
-	SetCursorPosition(1, 10);
+	setCursorPos(1, 10);
+}
+
+
+bool isOnBoard(const TPiece::PiecePos& tar_pos) {
+	auto [file, rank] = tar_pos;
+
+	if ( (file >= 'A' && file <= 'H') && (rank >= 1 && rank <= 8) )
+		return true;
+	else 
+		return false;
+}
+
+
+bool isEnemy(const TPiece::PiecePos& tar_pos) {
+	for (const auto& piece : board.getPieces()) {
+		if (piece->getPos() == tar_pos && !piece->getColor() == board.getTurn())
+			return true;
+	}
+	return false;
 }
 
 
@@ -106,19 +125,19 @@ void CmdClear() {
 
 #include <Windows.h>
 
-void SetCursorPosition(int x, int y) {
+void setCursorPos(int x, int y) {
 	COORD c;
 	c.X = x, c.Y = y;
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), c);
 }
 
 
-void SetBackground(void) {
+void setBackground(void) {
 	system("Color 30");
 }
 
 
-void SetTextColor(EColor color) {
+void setTextColor(EColor color) {
 	switch (color)
 	{
 	case white:

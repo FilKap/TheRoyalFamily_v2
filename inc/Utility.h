@@ -6,16 +6,18 @@
 namespace TheRoyalFamily_v2
 {
 
-void PrintEmpty(void);
-void PrintPieces(void);
-void ConsoleInit(void);
-void NewGame(void);
-bool GameProcess(void);
-void CmdClear(void);
+void printEmpty(void);
+void printPieces(void);
+void consoleInit(void);
+void newGame(void);
+bool gameProcess(void);
+void cmdClear(void);
+bool isOnBoard(const TPiece::PiecePos& tar_pos);
+bool isEnemy(const TPiece::PiecePos& tar_pos);
 
 // OS utility
-void SetCursorPosition(int x, int y);
-void SetBackground(void);
-void SetTextColor(EColor color);
+void setCursorPos(int x, int y);
+void setBackground(void);
+void setTextColor(EColor color);
 
 }

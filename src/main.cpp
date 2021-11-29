@@ -2,15 +2,15 @@
 
 using namespace TheRoyalFamily_v2;
 
-auto board = Board::GetBoard();		/*Global object*/
+auto board = Board::getBoard();		/*Global object*/
 
 
 int main() {
-	ConsoleInit();				/*Console config*/
+	consoleInit();				/*Console config*/
 
-	NewGame();
+	newGame();
 
-	while (GameProcess());
+	while (gameProcess());
 
 	return 0;
 }
