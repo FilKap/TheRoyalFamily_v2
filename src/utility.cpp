@@ -15,6 +15,7 @@
 #include <array>
 #include <cassert>
 #include <string>
+#include <iterator>
 
 using std::array, std::ostream, std::cout, std::endl, std::copy, std::cin, std::string;
 
@@ -143,7 +144,7 @@ bool isOnBoard(const TPiece::PiecePos& tar_pos) {
 
 bool isEnemy(const TPiece::PiecePos& tar_pos) {
 	for (const auto& piece : board.getPieces()) {
-		if (piece->getPos() == tar_pos && !piece->getColor() == board.getTurn())
+		if (piece->getPos() == tar_pos && !(piece->getColor() == board.getTurn()))
 			return true;
 	}
 	return false;
@@ -162,6 +163,39 @@ bool isSameOnSquare(const TPiece::PiecePos& tar_pos) {
 *  	OS dependence functions		     *
 **************************************/
 #ifdef __linux__
+
+/**
+ * @brief Set cursor position in terminal.
+ *
+ * @param Column.
+ * @param Row.
+ */
+void setCursorPos(int x, int y) {
+	cout << "\033[" << y+1 << ";" << x+1 << 'f';
+}
+/**
+ * @brief Set the lightblue backgorund color.
+ */
+void setBackground(void) {
+	cout << "\033[37;46m";
+	cout << "\033[2J";
+}
+/**
+ * @brief Set the color of the text.
+ *
+ * @param Color (blue/white).
+ */
+void setTextColor(EColor color) {
+	switch (color)
+	{
+	case white:
+		cout << "\033[37;46m";
+		break;
+	case black:
+		cout << "\033[30;46m";
+		break;
+	}
+}
 
 #elif _WIN32
 #include <Windows.h>

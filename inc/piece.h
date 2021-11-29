@@ -49,8 +49,8 @@ public:
 
 	// Copy asigment constructor
 	TPiece(char file, int rank, EColor color, char code) :
-		fPos{ std::make_tuple(file, rank) },
 		fColor{ color },
+		fPos{ std::make_tuple(file, rank) },
 		fCode{ code }
 	{ }
 
