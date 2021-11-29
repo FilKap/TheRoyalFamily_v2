@@ -1,4 +1,16 @@
-#include "Utility.h"
+/******************************************************************************
+ * This file is a part of the TheRoyalFamily_v2 console chess game.           *
+ ******************************************************************************/
+
+/**
+ * @file utility.cpp
+ * @author Kaplunow
+ * @date Nov 2021
+ * @brief File containing definitions of utility functions.
+ * @ver 2.0
+ */
+
+#include "utility.h"
 
 #include <array>
 #include <cassert>
@@ -6,13 +18,29 @@
 
 using std::array, std::ostream, std::cout, std::endl, std::copy, std::cin, std::string;
 
-extern TheRoyalFamily_v2::Board board;
 
+/******************************************************************************
+* Global variables										 
+******************************************************************************/
+extern TheRoyalFamily_v2::Board board;
 
 
 namespace TheRoyalFamily_v2
 {
+/******************************************************************************
+* Private prototpyes 
+******************************************************************************/
+void printEmpty(void);
+void printPieces(void);
+void print(void);
+void cmdClear(void);
+void setCursorPos(int x, int y);
+void setBackground(void);
+void setTextColor(EColor color);
 
+/**
+ * @brief Print empty board.
+ */
 void printEmpty() {
 	const array<int, 8> kNumbers{ 8, 7, 6, 5, 4, 3, 2, 1 };
 	const array<char, 8> kLetters{ 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H' };
@@ -25,7 +53,6 @@ void printEmpty() {
 	copy(kLetters.begin(), kLetters.end(), std::ostream_iterator<char>(cout, " "));
 }
 
-
 std::ostream& operator<< (std::ostream& o, const TPiece& p) {
 	auto [file, rank] = p.fPos;
 	setCursorPos(((file - 'A' + 1) * 2), 8 - rank);
@@ -33,8 +60,9 @@ std::ostream& operator<< (std::ostream& o, const TPiece& p) {
 	cout << p.fCode << endl;
 	return o;
 }
-
-
+/**
+ * @brief Print pieces(letters) on board.
+ */
 void printPieces() {
 	auto& pieces = board.getPieces();
 
@@ -43,17 +71,22 @@ void printPieces() {
 		cout << *piece;
 	}
 }
-
+/*
+* @brief Print everrything.
+*/
+void print() {
+	printEmpty();
+	printPieces();
+	setCursorPos(1, 10);
+}
 
 void consoleInit() {
 	setBackground();
 }
 
-
 void newGame() {
 	board.createNewGamePieces();
 }
-
 
 bool gameProcess() {
 	string sCur_pos, sTar_pos;
@@ -63,7 +96,7 @@ bool gameProcess() {
 	{
 		// Preparing console
 		EColor turn = board.getTurn();
-		board.print();
+		print();
 		cmdClear();
 		setTextColor(turn);
 
@@ -85,8 +118,9 @@ bool gameProcess() {
 
 	return true;
 }
-
-
+/**
+ * @brief Clearing the command line.
+ */
 void cmdClear() {
 	for (auto i = 0; i < 10; i++)
 	{
@@ -98,7 +132,6 @@ void cmdClear() {
 	setCursorPos(1, 10);
 }
 
-
 bool isOnBoard(const TPiece::PiecePos& tar_pos) {
 	auto [file, rank] = tar_pos;
 
@@ -108,7 +141,6 @@ bool isOnBoard(const TPiece::PiecePos& tar_pos) {
 		return false;
 }
 
-
 bool isEnemy(const TPiece::PiecePos& tar_pos) {
 	for (const auto& piece : board.getPieces()) {
 		if (piece->getPos() == tar_pos && !piece->getColor() == board.getTurn())
@@ -117,26 +149,45 @@ bool isEnemy(const TPiece::PiecePos& tar_pos) {
 	return false;
 }
 
+bool isSameOnSquare(const TPiece::PiecePos& tar_pos) {
+	for (const auto& piece : board.getPieces()) {
+		if (piece->getPos() == tar_pos && piece->getColor() == board.getTurn())
+			return true;
+	}
+	return false;
+}
 
+
+/*************************************
+*  	OS dependence functions		     *
+**************************************/
 #ifdef __linux__
 
-
 #elif _WIN32
-
 #include <Windows.h>
 
+/**
+ * @brief Set cursor position in terminal.
+ *
+ * @param Column.
+ * @param Row.
+ */
 void setCursorPos(int x, int y) {
 	COORD c;
 	c.X = x, c.Y = y;
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), c);
 }
-
-
+/**
+ * @brief Set the lightblue backgorund color.
+ */
 void setBackground(void) {
 	system("Color 30");
 }
-
-
+/**
+ * @brief Set the color of the text.
+ *
+ * @param Color (blue/white).
+ */
 void setTextColor(EColor color) {
 	switch (color)
 	{
@@ -150,5 +201,4 @@ void setTextColor(EColor color) {
 }
 
 #endif
-
 }

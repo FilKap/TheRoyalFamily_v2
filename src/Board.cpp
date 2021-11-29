@@ -1,4 +1,16 @@
-#include "Board.h"
+/******************************************************************************
+ * This file is a part of the TheRoyalFamily_v2 console chess game.           *
+ ******************************************************************************/
+
+/**
+ * @file board.cpp
+ * @author Kaplunow
+ * @date Nov 2021
+ * @brief File containing definition of board class.
+ * @ver 2.0
+ */
+
+#include "board.h"
 
 using std::make_shared;
 
@@ -7,28 +19,16 @@ using std::make_shared;
 namespace TheRoyalFamily_v2
 {
 
-void printEmpty(void);
-void printPieces(void);
-void setCursorPos(int x, int y);
-
-
 Board& Board::getBoard() {
 	static Board board;
 	return board;
 }
 
-
-void Board::print() {
-	printEmpty();
-	printPieces();
-	setCursorPos(1, 10);
-}
-
 void Board::createNewGamePieces() {
 	fPieces.push_back(make_shared<Pawn>('A', 7, black));
 	fPieces.push_back(make_shared<Pawn>('A', 2, white));
+	fPieces.push_back(make_shared<Pawn>('A', 6, black));
 }
-
 
 bool Board::tryMove(const TPiece::PiecePos& cur_pos, const TPiece::PiecePos& tar_pos) {
 	for (const auto& piece : fPieces) {
@@ -46,16 +46,10 @@ bool Board::tryMove(const TPiece::PiecePos& cur_pos, const TPiece::PiecePos& tar
 void Board::tryCapture(const TPiece::PiecePos& tar_pos) {
 }
 
-bool Board::isSameOnSquare(const TPiece::PiecePos& tar_pos) const {
-	return false;
-}
 void Board::toggleTurn() {
 	if (fTurn == white)
 		fTurn = black;
 	else
 		fTurn = white;
 }
-
-
-
 }

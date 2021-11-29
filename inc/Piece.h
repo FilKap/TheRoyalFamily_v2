@@ -1,32 +1,47 @@
+/******************************************************************************
+ * This file is a part of the TheRoyalFamily_v2 console chess game.           *
+ ******************************************************************************/
+
+/**
+ * @file piece.h
+ * @author Kaplunow
+ * @date Nov 2021
+ * @brief File containing declarations and definitions of abstract basic class for all pieces that would derived from.
+ * @ver 2.0
+ */
+
 #pragma once
 
 #include <tuple>
 #include <iostream>
 #include <memory>
 
-
 namespace TheRoyalFamily_v2
 {
 
-
+/**
+* @brief Enumerate type of color for the pieces, and player's turn.
+*/
 enum EColor { white, black };
 
-
+/**
+* @brief Abstract bacis class for future pieces.
+*/
 class TPiece {
 
 
 // Helper
 public:
 
-	using PiecePos = std::tuple<char, int>;
+	using PiecePos = std::tuple<char, int>;			/* Square on board, for example 'A1'*/
 
 
 // Fields
 private:
 
-	EColor	        fColor;
-	PiecePos		fPos;
-	char		    fCode;
+	EColor	        fColor;			/* Color of piece*/
+	PiecePos		fPos;			/* Square where the piece is*/
+	char		    fCode;			/* Code for displaying letter in console */
 
 
 // Special functions
@@ -60,8 +75,16 @@ public:
 // Interface
 public:
 
+	/**
+	* @brief Check if piece can move to tar_pos.
+	* 
+	* @param Target squre.
+	*/
 	virtual bool canMove(const PiecePos& tar_pos) = 0;
 
+
+// Friend functions
+public:
 	friend std::ostream& operator<< (std::ostream& o, const TPiece& p);
 };
 
